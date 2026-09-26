@@ -1,122 +1,155 @@
-# AZRA — web
+# AZRA
 
-Personal brand / studio site for **AZRA** (`Design. Build. Ship.`), built with
-Next.js (App Router) + React + Tailwind CSS v4, GSAP ScrollTrigger + Lenis for
-the multi-phase scroll system, Framer Motion for micro-interactions, deployed
-to Vercel.
+### Design. Build. Ship.
 
-## Scripts
+**AZRA** is an independent freelance web development studio creating modern, distinctive, and purposeful digital experiences.
 
-| Command                | What it does                                      |
-| ---------------------- | ------------------------------------------------- |
-| `npm run dev`          | Dev server with hot reload                        |
-| `npm run build`        | Production build (`next build`)                   |
-| `npm run start`        | Serve the production build                        |
-| `npm run lint`         | ESLint (eslint-config-next, core-web-vitals + TS) |
-| `npm run typecheck`    | `tsc --noEmit`                                    |
-| `npm test`             | Vitest unit tests (mailto, mission clock)         |
-| `npm run format`       | Prettier write (`format:check` to verify)         |
-| `npm run check:visual` | Playwright render check + screenshots (below)     |
+We turn ideas into polished websites and web applications that are designed to look sharp, feel intuitive, and work seamlessly.
 
-## Visual check
+**From idea to launch.**
 
-`scripts/visual-check.mjs` loads the **built** site at 1440×900 and 390×844
-with system Chrome (no browser download) and fails on any of: a console error,
-horizontal overflow, a missing `<h1>`, fonts that never loaded, an intro
-overlay that fails to dismiss (or replays after reload), a broken mobile
-menu, a reveal that never fires, a progress bar that never moves, a custom
-cursor that is missing its dot or trailing ring, does not invert what it
-covers, or does not change/reset state over interactive elements, a work line
-that will not stop on hover or open a project when clicked, letter bloat that
-never got applied, or a wave backdrop that is missing, not fixed behind the
-page, or stacked above the content. Screenshots land in `screenshots/`
-(git-ignored).
+---
 
-`npm run shots` (against a running build) captures the interactive effects —
-the cursor inverting the text under it, letters bloating on hover, and the work
-line frozen mid-run — so they can be eyeballed without a live pointer.
+## AZRA
 
-```powershell
-npm run build
-npm run start -- -p 3100                    # 3000 may already be taken
-$env:CHECK_URL="http://127.0.0.1:3100"; npm run check:visual
-```
+### Architecture. Zenith. Runtime. Automation.
 
-## Structure
+**Architecture**
 
-```
-src/
-  app/                 App Router: layout (fonts, SEO, JSON-LD), page, not-found,
-                       robots.ts, sitemap.ts, icon.svg, globals.css (design tokens)
-  components/
-    effects/           Arrival overlay, 3D gradient wave backdrop, custom cursor
-                       (dot + trailing ring), global letter bloat, scroll reveal
-    layout/            Header (hover-expanding [menu], mobile panel, progress), footer, HUD status
-                       bar, skip link
-    scroll/            Scroll system: SmoothScroll (Lenis + anchor routing),
-                       StackPhase (pinned overlap), HorizontalPhase (horizontal
-                       passage — see "Scroll system" below)
-    sections/          One file per page section: hero, manifesto, services,
-                       work (rotating line), process, partnership, contact(+form)
-  content/             All copy and site config — edit words here, never in JSX
-  hooks/               Client subscriptions: mission clock, session flags
-  lib/                 Pure logic: mailto builder, mission clock, cn() helper,
-                        JSON-LD builder, gsap plugin registration
-scripts/               visual-check.mjs (Playwright render QA), optimize-images.mjs
-                       (assets/work-source PNG -> public/work WebP)
-assets/
-  work-source/         Original project screenshots (source for optimize-images)
-```
+We build digital products on thoughtful, scalable foundations.
 
-Rules of the house:
+**Zenith**
 
-- **Tokens only** — colors/spacing come from `@theme` in `globals.css`; no raw
-  hex sprinkled in components.
-- **Content is data** — every paragraph a human might rewrite lives in
-  `src/content/`.
-- **Logic is pure** — anything with an if-statement lives in `src/lib/` and has
-  a test next to it.
-- Server components by default; `"use client"` only where there is state or an
-  effect (arrival, cursor, wave background, reveal, header, HUD, contact form,
-  work, scroll phases).
-- **Honest content** — work samples are real projects in `public/work/`
-  (regenerate WebPs with `node scripts/optimize-images.mjs`); no invented
-  clients, crew or metrics.
+We push every project toward its highest level of polish.
 
-## Environment
+**Runtime**
 
-Copy `.env.example` to `.env.local` if you need to override defaults:
+Ideas become real when they work. We build experiences that perform in the real world.
 
-| Variable               | Default               | Purpose                                                 |
-| ---------------------- | --------------------- | ------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | `https://azra.studio` | Canonical origin for metadata, sitemap, robots, JSON-LD |
+**Automation**
 
-There is no backend in this app by design: the contact form POSTs the brief
-straight to the inbox through a FormSubmit hash endpoint, and falls back to a
-prefilled `mailto:` draft (painted after the confirmation panel) if that
-endpoint cannot be reached.
+We use technology to simplify repetitive work and create smarter digital experiences.
 
-## Scroll system
+---
 
-Three phases, composed in `src/app/page.tsx`:
+## What is AZRA?
 
-1. **StackPhase** (hero → manifesto → services): sheets pin and the next one
-   slides up over them. Tune the cover parallax (`y: -80`, dim to `0.25`) in
-   `scroll/stack-phase.tsx`; sheet heights come from `.stack-slot` (`100svh`).
-2. **HorizontalPhase** (work → process): desktop ≥1024px only; vertical scroll
-   scrubs the track sideways. Tune the lag with `scrub: 0.6` in
-   `scroll/horizontal-phase.tsx`; below 1024px or with reduced motion it is a
-   plain vertical stack (structural fallback, no JS).
-3. **Normal flow** (partnership → contact → footer).
+AZRA is a freelance development brand focused on building digital experiences for individuals, startups, businesses, and creators.
 
-Reordering or adding children is enough — pin ranges derive from the layout
-and recalculate via `invalidateOnRefresh`. Reduced motion disables the whole
-system natively (no Lenis, no pins, no sideways).
+We believe a website should be more than a collection of pages.
 
-## Deploy (Vercel)
+It should communicate clearly, represent the identity behind it, and leave a lasting impression.
 
-1. Import the repo in Vercel with **Root Directory = `web`**
-   (framework preset: Next.js — auto-detected).
-2. Set `NEXT_PUBLIC_SITE_URL` to the real production domain.
-3. Ship. `robots.ts` and `sitemap.ts` publish automatically at
-   `/robots.txt` and `/sitemap.xml`.
+AZRA brings together **design, development, interaction, and performance** to create experiences built around the needs of each project.
+
+---
+
+## What We Do
+
+- Website Development
+- Website Redesign
+- Business Websites
+- Portfolio Websites
+- Landing Pages
+- Web Applications
+- Interactive Web Experiences
+- Custom Frontend Development
+- UI Development
+- Digital Product Experiences
+
+---
+
+## Our Approach
+
+### Understand
+
+Every project starts with understanding the idea, goals, audience, and problem we're solving.
+
+### Design
+
+We create a visual direction that fits the identity and purpose of the project instead of forcing it into a template.
+
+### Build
+
+We turn the concept into a responsive and refined digital experience, paying attention to both the big picture and the smallest details.
+
+### Ship
+
+We take the project through the final stage and get it ready for the real world.
+
+**Idea → Design → Build → Launch**
+
+---
+
+## The AZRA Standard
+
+### Clarity
+
+Every element should have a purpose. We keep experiences intuitive and communication clear.
+
+### Craft
+
+Typography, spacing, motion, interaction, and visual details all matter.
+
+### Performance
+
+Beautiful experiences should still feel fast, responsive, and effortless to use.
+
+### Responsiveness
+
+Every project should feel at home across different screen sizes and devices.
+
+### Purpose
+
+Design should support the product, not distract from it.
+
+---
+
+## Our Work
+
+AZRA works across different types of digital experiences, from personal websites and business platforms to interactive web applications.
+
+Every project presents a different challenge and an opportunity to create something distinct.
+
+We don't believe every website should look the same.
+
+---
+
+## Working With AZRA
+
+Have an idea that needs to become a website?
+
+Need to redesign an existing digital presence?
+
+Building something from scratch?
+
+AZRA works with clients from the initial idea through the final launch, creating experiences tailored to their goals, audience, and identity.
+
+**Tell us what you're building. We'll figure out how to build it.**
+
+---
+
+## The Vision
+
+AZRA is being built with a long-term vision:
+
+To create a freelance brand known for thoughtful design, strong development, and digital experiences that people remember.
+
+What starts with websites can grow into much more.
+
+**Design. Build. Ship.**
+
+---
+
+## Contact
+
+Have a project in mind?
+
+Let's build something worth putting on the internet.
+
+**AZRA**
+_Design. Build. Ship._
+
+---
+
+© AZRA. All rights reserved.
