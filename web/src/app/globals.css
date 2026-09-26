@@ -1,0 +1,376 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0c0c0b;
+  --color-fg: #f2f1ed;
+  --color-muted: #8e8e87;
+  --color-dim: #5c5c56;
+  --color-elevated: #161614;
+  --color-line: color-mix(in oklab, var(--color-fg) 14%, transparent);
+  --color-line-strong: color-mix(in oklab, var(--color-fg) 28%, transparent);
+
+  --color-paper: #e8e8e6;
+  --color-ink: #141413;
+  --color-paper-muted: #6a6a64;
+
+  --radius-sm: 2px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bloat: cubic-bezier(0.34, 1.36, 0.64, 1);
+}
+
+@theme inline {
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 3px;
+  }
+
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"],
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea {
+    cursor: none !important;
+  }
+}
+
+html.has-lenis {
+  scroll-behavior: auto;
+}
+
+#cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 999px;
+  background: #ffffff;
+  mix-blend-mode: difference;
+  transition:
+    opacity 220ms var(--ease-out-soft),
+    transform 220ms var(--ease-out-soft);
+}
+
+#cursor-ring {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  mix-blend-mode: difference;
+  transform: scale(0.68);
+  transition:
+    transform 260ms var(--ease-out-soft),
+    background-color 260ms var(--ease-out-soft),
+    opacity 220ms var(--ease-out-soft);
+}
+
+#cursor-beam {
+  width: 2px;
+  height: 18px;
+  margin: -9px 0 0 -1px;
+  background: #ffffff;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out-soft);
+}
+
+#cursor[data-cursor-state="hover"] #cursor-ring {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+#cursor[data-cursor-state="hover"] #cursor-dot {
+  transform: scale(0.6);
+}
+
+#cursor[data-cursor-state="text"] #cursor-dot,
+#cursor[data-cursor-state="text"] #cursor-ring {
+  opacity: 0;
+}
+
+#cursor[data-cursor-state="text"] #cursor-beam {
+  opacity: 1;
+}
+
+.bloat-letter {
+  display: inline-block;
+  transition: transform 320ms var(--ease-bloat);
+  will-change: transform;
+}
+
+.bw {
+  white-space: nowrap;
+}
+
+.bw > .bloat-letter {
+  will-change: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .bloat-letter:hover {
+    transform: scale(1.48);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bloat-letter {
+    transition: none;
+  }
+
+  .bloat-letter:hover {
+    transform: none;
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.project-line-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+.project-line:hover .project-line-track,
+.project-line:focus-within .project-line-track {
+  animation-play-state: paused;
+}
+
+.stack-slot {
+  position: relative;
+  min-height: 100svh;
+}
+
+.stack-sheet {
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-line);
+}
+
+.horizontal-phase {
+  overflow-x: clip;
+}
+
+.h-track {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal-phase.is-active {
+  height: 100svh;
+  overflow: hidden;
+}
+
+.horizontal-phase.is-active .h-track {
+  flex-direction: row;
+  height: 100%;
+}
+
+.horizontal-phase.is-active .h-track > section {
+  width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding-top: 5.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.horizontal-phase.is-active .project-line {
+  margin-top: 1.25rem;
+}
+
+.horizontal-phase.is-active .project-detail {
+  margin-top: 1.25rem;
+}
+
+.horizontal-phase.is-active .project-detail > div:first-child {
+  max-height: 46vh;
+}
+
+.arrival-hold {
+  animation: arrivalHold 5.2s var(--ease-out-soft) forwards;
+}
+
+@keyframes arrivalHold {
+  0%,
+  78% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 700ms var(--ease-out-soft),
+    transform 700ms var(--ease-out-soft);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-rise {
+  animation: heroRise 850ms var(--ease-out-soft) both;
+}
+
+.hero-rise-1 {
+  animation-delay: 60ms;
+}
+
+.hero-rise-2 {
+  animation-delay: 160ms;
+}
+
+.hero-rise-3 {
+  animation-delay: 280ms;
+}
+
+.hero-rise-4 {
+  animation-delay: 420ms;
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pulse-dot {
+  animation: pulseDot 1.9s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .project-line-track {
+    animation: none;
+  }
+
+  .horizontal-phase.is-active {
+    height: auto;
+    overflow: visible;
+  }
+
+  .horizontal-phase.is-active .h-track {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .horizontal-phase.is-active .h-track > section {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .arrival-hold {
+    animation: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-rise,
+  .pulse-dot {
+    animation: none;
+  }
+}

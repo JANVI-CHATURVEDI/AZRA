@@ -1,0 +1,25 @@
+# --- dependencies & builds ---
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+
+# --- env & secrets (keep the examples) ---
+.env
+.env.*
+!.env.example
+!.env.example.*
+
+# --- tooling & local artifacts ---
+.vercel/
+.tanstack/
+screenshots/
+*.log
+
+# --- editor / OS ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
