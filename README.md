@@ -1,44 +1,155 @@
-# AZRA — production site
+# AZRA
 
-Personal brand / studio site for **AZRA**.
-Stack: **Next.js 16 + React 19 + Tailwind CSS v4 + TypeScript**, hosted on **Vercel**.
+### Design. Build. Ship.
 
-```
-AZRA/
-├── web/       the public site
-└── README.md
-```
+**AZRA** is an independent freelance web development studio creating modern, distinctive, and purposeful digital experiences.
 
-There is no backend: the contact form hands the brief to the visitor's mail
-client (`mailto:`) with a copy-to-clipboard fallback, and every page is
-prerendered as static content. If a server-side need shows up later (real
-email delivery, accounts, webhooks), it becomes a Next.js route handler in
-`web/` — not a second service.
+We turn ideas into polished websites and web applications that are designed to look sharp, feel intuitive, and work seamlessly.
 
-## Local development
+**From idea to launch.**
 
-```powershell
-cd web
-npm install
-npm run dev                                # http://localhost:3000
-```
+---
 
-Quality gates (all must pass):
+## AZRA
 
-```powershell
-npm run lint        # ESLint (eslint-config-next)
-npm run typecheck   # tsc --noEmit
-npm test            # Vitest — mailto, mission clock
-npm run format:check
-npm run build       # production build, all routes static
-npm run check:visual # Playwright render QA at 1440x900 + 390x844
-```
+### Architecture. Zenith. Runtime. Automation.
 
-## Deploy (Vercel)
+**Architecture**
 
-Import this repo with **Root Directory = `web`** (framework preset: Next.js,
-auto-detected), set `NEXT_PUBLIC_SITE_URL` to the production domain, ship.
-`robots.txt` and `sitemap.xml` publish automatically.
+We build digital products on thoughtful, scalable foundations.
 
-See `web/README.md` for the project structure, the design rules that keep the
-codebase tidy, and the full script reference.
+**Zenith**
+
+We push every project toward its highest level of polish.
+
+**Runtime**
+
+Ideas become real when they work. We build experiences that perform in the real world.
+
+**Automation**
+
+We use technology to simplify repetitive work and create smarter digital experiences.
+
+---
+
+## What is AZRA?
+
+AZRA is a freelance development brand focused on building digital experiences for individuals, startups, businesses, and creators.
+
+We believe a website should be more than a collection of pages.
+
+It should communicate clearly, represent the identity behind it, and leave a lasting impression.
+
+AZRA brings together **design, development, interaction, and performance** to create experiences built around the needs of each project.
+
+---
+
+## What We Do
+
+- Website Development
+- Website Redesign
+- Business Websites
+- Portfolio Websites
+- Landing Pages
+- Web Applications
+- Interactive Web Experiences
+- Custom Frontend Development
+- UI Development
+- Digital Product Experiences
+
+---
+
+## Our Approach
+
+### Understand
+
+Every project starts with understanding the idea, goals, audience, and problem we're solving.
+
+### Design
+
+We create a visual direction that fits the identity and purpose of the project instead of forcing it into a template.
+
+### Build
+
+We turn the concept into a responsive and refined digital experience, paying attention to both the big picture and the smallest details.
+
+### Ship
+
+We take the project through the final stage and get it ready for the real world.
+
+**Idea → Design → Build → Launch**
+
+---
+
+## The AZRA Standard
+
+### Clarity
+
+Every element should have a purpose. We keep experiences intuitive and communication clear.
+
+### Craft
+
+Typography, spacing, motion, interaction, and visual details all matter.
+
+### Performance
+
+Beautiful experiences should still feel fast, responsive, and effortless to use.
+
+### Responsiveness
+
+Every project should feel at home across different screen sizes and devices.
+
+### Purpose
+
+Design should support the product, not distract from it.
+
+---
+
+## Our Work
+
+AZRA works across different types of digital experiences, from personal websites and business platforms to interactive web applications.
+
+Every project presents a different challenge and an opportunity to create something distinct.
+
+We don't believe every website should look the same.
+
+---
+
+## Working With AZRA
+
+Have an idea that needs to become a website?
+
+Need to redesign an existing digital presence?
+
+Building something from scratch?
+
+AZRA works with clients from the initial idea through the final launch, creating experiences tailored to their goals, audience, and identity.
+
+**Tell us what you're building. We'll figure out how to build it.**
+
+---
+
+## The Vision
+
+AZRA is being built with a long-term vision:
+
+To create a freelance brand known for thoughtful design, strong development, and digital experiences that people remember.
+
+What starts with websites can grow into much more.
+
+**Design. Build. Ship.**
+
+---
+
+## Contact
+
+Have a project in mind?
+
+Let's build something worth putting on the internet.
+
+**AZRA**
+_Design. Build. Ship._
+
+---
+
+© AZRA. All rights reserved.
